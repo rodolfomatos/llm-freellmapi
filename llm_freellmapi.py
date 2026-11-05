@@ -294,25 +294,38 @@ def configure(
 ) -> None:
     """Interactively (or non-interactively) write the config file."""
     existing = load_config()
+    interactive = base_url is None and api_key is None and model is None
 
     if base_url is None:
-        base_url = click.prompt(
-            "FreeLLMAPI base URL",
-            default=existing.get("FREELLMAPI_BASE_URL", DEFAULT_BASE_URL),
+        base_url = (
+            click.prompt(
+                "FreeLLMAPI base URL",
+                default=existing.get("FREELLMAPI_BASE_URL", DEFAULT_BASE_URL),
+            )
+            if interactive
+            else existing.get("FREELLMAPI_BASE_URL", DEFAULT_BASE_URL)
         )
 
     if api_key is None:
-        api_key = click.prompt(
-            "Unified API key (dashboard > Keys)",
-            default=existing.get("FREELLMAPI_API_KEY", ""),
-            hide_input=True,
-            show_default=False,
+        api_key = (
+            click.prompt(
+                "Unified API key (dashboard > Keys)",
+                default=existing.get("FREELLMAPI_API_KEY", ""),
+                hide_input=True,
+                show_default=False,
+            )
+            if interactive
+            else existing.get("FREELLMAPI_API_KEY", "")
         )
 
     if model is None:
-        model = click.prompt(
-            "Default model id",
-            default=existing.get("FREELLMAPI_MODEL", DEFAULT_MODEL),
+        model = (
+            click.prompt(
+                "Default model id",
+                default=existing.get("FREELLMAPI_MODEL", DEFAULT_MODEL),
+            )
+            if interactive
+            else existing.get("FREELLMAPI_MODEL", DEFAULT_MODEL)
         )
 
     base_url = normalize_base_url(base_url)
@@ -386,7 +399,7 @@ def check_status() -> None:
         models = fetch_models(config)
     except llm.ModelError as exc:
         click.echo(f"[FAIL] {exc}")
-        raise click.ClickException("FreeLLMAPI server is not reachable") from exc
+        raise click.ClickException("FreeLLMAPI status check failed") from exc
 
     click.echo("[OK] FreeLLMAPI server is online")
     click.echo(f"     Base URL: {base_url}")
