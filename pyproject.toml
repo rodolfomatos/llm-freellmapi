@@ -1,0 +1,66 @@
+[project]
+name = "llm-freellmapi"
+version = "0.1.0"
+description = "LLM plugin for FreeLLMAPI — use dozens of free LLM providers through one OpenAI-compatible endpoint"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Rodolfo Matos", email = "rodolfo.matos@gmail.com" }
+]
+keywords = ["llm", "freellmapi", "plugin", "cli", "openai-compatible"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "llm>=0.36",
+    "httpx>=0.24.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "ruff>=0.4.0",
+    "build>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/rodolfomatos/llm-freellmapi"
+Repository = "https://github.com/rodolfomatos/llm-freellmapi"
+"Bug Tracker" = "https://github.com/rodolfomatos/llm-freellmapi/issues"
+Changelog = "https://github.com/rodolfomatos/llm-freellmapi/blob/main/CHANGELOG.md"
+
+[project.entry-points.llm]
+freellmapi = "llm_freellmapi"
+
+[project.scripts]
+llm-freellmapi = "llm_freellmapi:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+include = ["llm_freellmapi.py"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "llm_freellmapi.py",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "docs",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
