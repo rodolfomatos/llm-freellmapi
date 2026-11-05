@@ -4,7 +4,7 @@
 
 | Item | Impact | Effort | Priority | Status |
 |------|--------|--------|----------|--------|
-| CI via GitHub Actions (lint + test on push) | Medium | Small | P1 | Pending |
+| CI via GitHub Actions (lint + test on push) | Medium | Small | P1 | Done |
 | Publish to PyPI | High | Small | P1 | Pending |
 | Shell completion for `llm freellmapi` | Low | Small | P2 | Pending |
 | `--provider` filter for `llm freellmapi models` | Low | Small | P2 | Pending |
@@ -27,3 +27,4 @@
 - [x] Mocked test suite
 - [x] AES project docs (VISION, REQUIREMENTS, ROADMAP, CLAUDE.md)
 - [x] Makefile (setup, test, lint, build, check, doctor)
+- [x] GitHub Actions CI (lint, format, tests on 3.10–3.13, wheel build)

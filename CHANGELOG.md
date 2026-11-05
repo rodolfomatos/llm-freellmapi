@@ -5,6 +5,20 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- GitHub Actions CI: lint, format check and tests on Python 3.10–3.13, plus a
+  wheel build and install verification.
+
+### Fixed
+
+- `llm freellmapi configure` no longer prompts when any flag is supplied;
+  unspecified values fall back to the existing config or defaults.
+- `llm freellmapi status` reports "status check failed" instead of claiming
+  the server is unreachable when the actual error is a 401.
+
 ## [0.1.0] — 2026-11-05
 
 ### Added

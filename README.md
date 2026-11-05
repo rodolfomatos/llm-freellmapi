@@ -1,5 +1,7 @@
 # llm-freellmapi
 
+[![CI](https://github.com/rodolfomatos/llm-freellmapi/actions/workflows/ci.yml/badge.svg)](https://github.com/rodolfomatos/llm-freellmapi/actions/workflows/ci.yml)
+
 Plugin for [LLM](https://llm.datasette.io/) that connects the `llm` CLI to
 [FreeLLMAPI](https://github.com/tashfeenahmed/freellmapi) — dozens of free LLM
 providers behind one OpenAI-compatible endpoint.
